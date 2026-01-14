@@ -1,0 +1,2 @@
+[workspace]
+members = ["rocket_z", "rocket_z_core", "rocket_z_macros"]

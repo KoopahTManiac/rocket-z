@@ -1,0 +1,8 @@
+[package]
+name = "rocket_z"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rocket_z_macros = { path = "../rocket_z_macros" }
+rocket_z_core = { path = "../rocket_z_core" }
