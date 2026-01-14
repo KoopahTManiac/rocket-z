@@ -2,6 +2,7 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemFn, LitStr};
 use syn::{punctuated::Punctuated, Expr, ExprLit, Token};
+use syn::parse::Parser;
 
 #[proc_macro_attribute]
 pub fn auto_route(args: TokenStream, input: TokenStream) -> TokenStream {
@@ -72,7 +73,8 @@ fn parse_mount_from_args(args: TokenStream) -> Result<LitStr, syn::Error> {
         return Ok(LitStr::new("/", proc_macro2::Span::call_site()));
     }
 
-    let parsed = syn::parse::<Punctuated<Expr, Token![,]>>(args)?;
+    let parser = Punctuated::<Expr, Token![,]>::parse_terminated;
+    let parsed = parser.parse(args)?;
     let Some(first) = parsed.first() else {
         return Ok(LitStr::new("/", proc_macro2::Span::call_site()));
     };
