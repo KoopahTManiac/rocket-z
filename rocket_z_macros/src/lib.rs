@@ -14,7 +14,7 @@ pub fn auto_route(args: TokenStream, input: TokenStream) -> TokenStream {
 
     TokenStream::from(quote! {
         #func
-        rocket_z::register_routes!(#mount, rocket::routes![#fn_name]);
+        rocket_z::register_routes!("/", rocket::routes![#fn_name]);
     })
 }
 
@@ -56,6 +56,6 @@ fn route_with_method(method: &str, args: TokenStream, input: TokenStream) -> Tok
     TokenStream::from(quote! {
         #[rocket::#method_ident(#mount)]
         #func
-        rocket_z::register_routes!(#mount, rocket::routes![#fn_name]);
+        rocket_z::register_routes!("/", rocket::routes![#fn_name]);
     })
 }
