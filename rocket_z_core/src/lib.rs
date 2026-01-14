@@ -1,4 +1,5 @@
-use rocket::Route;
+use rocket::{Build, Config, Rocket, Route};
+use std::net::{IpAddr, Ipv4Addr};
 
 pub struct RouteGroup {
     pub mount: &'static str,
@@ -17,4 +18,23 @@ macro_rules! register_routes {
             }
         }
     };
+}
+
+pub fn build_rocket(port: u16) -> Rocket<Build> {
+    let config = Config {
+        address: IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)),
+        port,
+        ..Config::default()
+    };
+
+    let rocket = rocket::custom(config);
+    mount_routes(rocket)
+}
+
+pub fn mount_routes(mut rocket: Rocket<Build>) -> Rocket<Build> {
+    for group in inventory::iter::<RouteGroup> {
+        rocket = rocket.mount(group.mount, (group.routes)());
+    }
+
+    rocket
 }
