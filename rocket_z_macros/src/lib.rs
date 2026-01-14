@@ -23,10 +23,11 @@ pub fn auto_route(args: TokenStream, input: TokenStream) -> TokenStream {
 /// Rocket GET route with auto-registration.
 ///
 /// Usage:
-/// - #[get("/path")]
-/// - #[get("/path", rank = 2)]
-/// - #[get("/path", format = "json")]
-/// - #[get("/path", data = "<body>")]
+/// - `#[get("/path")]`
+/// - `#[get("/path", rank = 2)]`
+/// - `#[get("/path", format = "json")]`
+/// - `#[get("/path", data = "<body>")]`
+/// - `#[get("/path", format = "json", data = "<body>")]`
 #[proc_macro_attribute]
 pub fn get(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("get", args, input)
@@ -35,9 +36,9 @@ pub fn get(args: TokenStream, input: TokenStream) -> TokenStream {
 /// Rocket POST route with auto-registration.
 ///
 /// Usage:
-/// - #[post("/path")]
-/// - #[post("/path", rank = 2)]
-/// - #[post("/path", format = "json", data = "<body>")]
+/// - `#[post("/path")]`
+/// - `#[post("/path", rank = 2)]`
+/// - `#[post("/path", format = "json", data = "<body>")]`
 #[proc_macro_attribute]
 pub fn post(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("post", args, input)
@@ -46,9 +47,9 @@ pub fn post(args: TokenStream, input: TokenStream) -> TokenStream {
 /// Rocket PUT route with auto-registration.
 ///
 /// Usage:
-/// - #[put("/path")]
-/// - #[put("/path", rank = 2)]
-/// - #[put("/path", format = "json", data = "<body>")]
+/// - `#[put("/path")]`
+/// - `#[put("/path", rank = 2)]`
+/// - `#[put("/path", format = "json", data = "<body>")]`
 #[proc_macro_attribute]
 pub fn put(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("put", args, input)
@@ -57,8 +58,8 @@ pub fn put(args: TokenStream, input: TokenStream) -> TokenStream {
 /// Rocket DELETE route with auto-registration.
 ///
 /// Usage:
-/// - #[delete("/path")]
-/// - #[delete("/path", rank = 2)]
+/// - `#[delete("/path")]`
+/// - `#[delete("/path", rank = 2)]`
 #[proc_macro_attribute]
 pub fn delete(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("delete", args, input)
@@ -67,9 +68,9 @@ pub fn delete(args: TokenStream, input: TokenStream) -> TokenStream {
 /// Rocket PATCH route with auto-registration.
 ///
 /// Usage:
-/// - #[patch("/path")]
-/// - #[patch("/path", rank = 2)]
-/// - #[patch("/path", format = "json", data = "<body>")]
+/// - `#[patch("/path")]`
+/// - `#[patch("/path", rank = 2)]`
+/// - `#[patch("/path", format = "json", data = "<body>")]`
 #[proc_macro_attribute]
 pub fn patch(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("patch", args, input)
