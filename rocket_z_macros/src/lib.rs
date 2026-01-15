@@ -76,6 +76,18 @@ pub fn patch(args: TokenStream, input: TokenStream) -> TokenStream {
     route_with_method("patch", args, input)
 }
 
+/// Rocket OPTIONS route with auto-registration.
+///
+/// Usage:
+/// - `#[options("/path")]`
+/// - `#[options("/path", rank = 2)]`
+/// - `#[options("/path", format = "json", data = "<body>")]`
+
+#[proc_macro_attribute]
+pub fn options(args: TokenStream, input: TokenStream) -> TokenStream {
+    route_with_method("options", args, input)
+}
+
 fn route_with_method(method: &str, args: TokenStream, input: TokenStream) -> TokenStream {
     let args_ts = proc_macro2::TokenStream::from(args.clone());
     let mount = match parse_mount_from_args(args) {
